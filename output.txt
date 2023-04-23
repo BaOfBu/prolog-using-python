@@ -1,0 +1,3 @@
+?- (child('PrincessCharlotte', Parent))
+Parent = 'PrinceWilliam';
+Parent = 'KateMiddleton';

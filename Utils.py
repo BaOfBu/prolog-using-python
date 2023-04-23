@@ -1,121 +1,148 @@
-import re
-from itertools import chain
-from more_itertools import unique_everseen
+abstract_name = '_/*'
 
-__all__ = ["is_number", "is_variable", "rh_val_get", "unifiable_check", "lh_eval"] #used in unify module
-
-## working with AND OR
-
-def regex_and_or():
-    replacements = {"),": ")AND", ");": ")OR"}  ## AND OR conditions placeholders
-    replacements = dict((re.escape(k), v) for k, v in replacements.items()) 
-    return replacements, re.compile("|".join(replacements.keys())) 
-
-## a variable is anything that starts with an uppercase letter or is an _
 def is_variable(term):
-    if is_number(term):
-        return False
-    elif term <= "Z" or term == "_":
-        return True
+        if term[0].isupper() or term.startswith('_'):
+            return True
+        else:
+            return False
+
+def is_operator(c):
+    return c=='&' or c == ';'
+
+def is_higher_precedence(a,b):
+    return (a == '&' or a == ',') and b == ';'
+
+#Change to Reverse Polish Notation
+def change_to_RPN(tokens):
+    operator_stack = []
+    output = []
+    for token in tokens:
+        if token == '(':
+            operator_stack.append(token)
+        elif token == ')':
+            operator = operator_stack.pop()
+            while operator != '(':
+                output.append(operator)
+                operator = operator_stack.pop()
+        elif is_operator(token):
+            while len(operator_stack)>0 and (operator_stack[-1].endswith('*') or \
+            is_higher_precedence(operator_stack[-1],token) or operator_stack[-1]==token) and (operator_stack[-1]!='('):
+                output.append(operator_stack.pop())
+            operator_stack.append(token)
+        else:
+            if token.endswith('*'):
+                operator_stack.append(token)
+            else:
+                output.append(token)
+    operator_stack.reverse()
+    output = output + operator_stack
+    return output
+
+#Process RPN and convert to conjunction
+def convert_to_conjunction(tokens):
+
+    from statement import Statement
+    from conDisjunction import Conjunction, Disjunction
+    from term import Term
+
+    stack = []
+    for token in tokens:
+        if token.endswith('*'):
+            operands = stack.pop()
+            operands = operands.term.split(',')
+            list_of_terms = []
+            for operand in operands:
+                list_of_terms.append(Term(operand))
+            statement = Statement(list_of_terms=list_of_terms,predicate=token[:-1])
+            stack.append(statement)
+        elif is_operator(token):
+            list_of_statements = []
+            list_of_statements.append(stack.pop())
+            list_of_statements.append(stack.pop())
+            list_of_statements.reverse()
+            new_operand = []
+            if token == '&':
+                new_operand = Conjunction(list_of_statements=list_of_statements)
+            elif token == ';':
+                new_operand = Disjunction(list_of_statements=list_of_statements)
+            stack.append(new_operand)
+        else:
+            stack.append(Term(token))
+    output = Conjunction([stack.pop()])
+    output.simplify()
+    return output
+
+def process_string(s):
+    #Turn string to list of tokens
+    tokens = []
+    name = ''
+    for ch in s:
+        if is_operator(ch) or ch == '(' or ch == ')':
+            if name!='':
+                if ch == '(':
+                    name += '*'
+                tokens.append(name)
+                name = ''
+            tokens.append(ch)
+        elif ch==' ':
+            continue
+        else:
+            name+=ch
+    rpn = change_to_RPN(tokens)
+    #print(rpn)
+    output_line = convert_to_conjunction(rpn)
+    return output_line
+
+
+def unify(x,y, binding):
+
+    from statement import Statement
+    from conDisjunction import Conjunction, Disjunction
+    from term import Term
+
+    if binding.is_fail:
+        return binding
+    elif x == y:
+        return binding
+    elif isinstance(x,Term) and x.is_var:
+        return unify_var(x,y,binding)
+    elif isinstance(y,Term) and y.is_var:
+        return unify_var(y,x,binding)
+    elif isinstance(x,Statement) and isinstance(y,Statement):
+        if x.is_unificable(y):
+            return unify(x.list_of_terms,y.list_of_terms,binding)
+    elif (isinstance(x,Conjunction) and isinstance(y,Conjunction)) or (isinstance(x,Disjunction) and isinstance(y,Disjunction)):
+        if len(x.list_of_statements)==len(y.list_of_statements):
+            return unify(x.list_of_statements,y.list_of_statements,binding)
+    elif isinstance(x,list) and isinstance(y,list):
+        if len(x) == len(y):
+            return unify(x[0],y[0],unify(x[1:],y[1:],binding))
+    binding.is_fail = True
+    return binding
+
+def unify_var(var,x,binding):
+    if binding.already_has(var):
+        return unify(binding.bind(var),x,binding)
+    elif binding.already_has(x):
+        return unify(var,binding.bind(x),binding)
     else:
-        return False
-    
-## check whether there is a number in terms or not        
-def is_number(s):
-    try: 
-        float(s)
-        return True
-    except ValueError:
-        return False        
-        
-## it parses the operations and returns the keys and the values to be evaluated        
-def prob_parser(domain, rule_string, rule_terms):
-    if "is" in rule_string:
-        s = rule_string.split("is")
-        key = s[0]
-        value = s[1]
-    else:
-        key = list(domain.keys())[0]
-        value = rule_string
-    for i in rule_terms:
-        if i in domain.keys():
-            value = re.sub(i, str(domain[i]), value)
-    value = re.sub(r"(and|or|in|not)", r" \g<0> ", value) ## add spaces after and before the keywords so that eval() can see them
-    return key, value
-    
-def rule_terms(rule_string):  ## getting list of unique terms
-    s = re.sub(" ", "", rule_string)
-    s = re.findall(r"\((.*?)\)", s)
-    s = [i.split(",") for i in s]
-    s = list(chain(*s))
-    return list(unique_everseen(s))
-    
-## the function that takes care of equalizing all uppercased variables
-def term_checker(expr):
-    #if not isinstance(expr, Expr):
-    #    expr = Expr(expr)
-    terms = expr.terms[:]
-    indx = [x for x,y in enumerate(terms) if y <= "Z"]
-    for i in indx:
-        ## give the same value for any uppercased variable in the same index
-        terms[i] = "Var" + str(i)
-    #return expr, "%s(%s)" % (expr.predicate, ",".join(terms))
-    return indx, "%s(%s)" % (expr.predicate, ",".join(terms))
-    
-def get_path(db, expr, path):
-    terms = db[expr.predicate]["facts"][0].lh.terms
-    path = [{k: i[k] for k in i.keys() if k not in terms} for i in path]
-    pathe = [] 
-    for i in path:
-        for k,v in i.items():
-            pathe.append(v)
-    return set(pathe)
+        binding.add_new_binding(var,x)
+        return binding
 
-def pl_read(kb, file):
-    file = open(file, "r")
-    lines = file.readlines()
-    facts = []
-    for i in lines:
-        i = i.strip()
-        i = re.sub(r'\.+$', "", i)
-        facts.append(i)
-    kb(facts)
-    print(f"facts and rules have been added to {kb.name}.db")
-
-
-def rh_val_get(rh_arg, lh_arg, rh_domain):
-    if is_variable(rh_arg):
-        rh_val = rh_domain.get(rh_arg)
-    else: rh_val = rh_arg
-    
-    return rh_val
-    
-def unifiable_check(nterms, rh, lh):
-    if nterms != len(lh.terms): 
-        return False
-    if rh.predicate != lh.predicate: 
-        return False
-    
-def lh_eval(rh_val, lh_arg, lh_domain):
-    if is_variable(lh_arg):  #variable in destination
-        lh_val = lh_domain.get(lh_arg)
-        if not lh_val: 
-            lh_domain[lh_arg] = rh_val
-            #return lh_domain
-        elif lh_val != rh_val:
-            return False          
-    elif lh_arg != rh_val: 
-        return False
-
-def answer_handler(answer):
-    if len(answer) == 0: 
-        answer.append("No")  ## if no answers at all return "No" 
-        return answer
-    
-    elif len(answer) > 1:
-        if any(ans != "Yes" for ans in answer):
-            answer = [i for i in answer if i != "Yes"]
-        elif all(ans == "Yes" for ans in answer):
-            return answer_handler([])
-            
-    return answer
+def print_output(f, query, binding_list):
+    print('?- ' + str(query))
+    f.write('?- ' + str(query) + '\n')
+    is_fail = True
+    res = ''
+    for binding in binding_list.binding_list:
+        if binding.is_fail == False:
+            is_fail = False
+            str_bind = ''
+            for term in query.get_list_var():
+                if not term.startswith(abstract_name):
+                    if term in binding.binding_dict:
+                        str_bind += term + ' = ' + binding.binding_dict[term] + '\n'
+            if not str_bind in res:
+                res += str_bind[:-1] + ';\n'
+    print(res)
+    f.write(res)

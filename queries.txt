@@ -1,0 +1,4 @@
+?-husband('Prince Phillip', 'Queen Elizabeth II').
+?-wife('Queen Elizabeth II', 'Captain Mark Phillips').
+?-father('Prince Charles', 'Autumn Kelly').
+?-mother('Princess Anne', 'Zara Phillips').
