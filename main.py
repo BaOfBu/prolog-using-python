@@ -33,24 +33,6 @@ knowledge_base.input_from_file(input_file)
 #     inference_choice = int(input('1. Forward chaining \t 2. Backward chaining \t 3. Resolution \nChoose inference: '))
 print("Backward chaining")
 f = open(output_file,'w')
-# if inference_choice == 1:
-#     # Forward chaining
-#     print('Warning: Query by forward chaining take very long time (find all solutions)')
-#     for query in knowledge_base.list_of_query:
-#         binding_list = knowledge_base.forward_chaining_ask(query)
-#         print_output(f,query,binding_list)
-# elif inference_choice == 2:
-#     # Backward chaining
-#     for query in knowledge_base.list_of_query:
-#         binding_list = knowledge_base.backward_chaining_ask(query)
-#         print_output(f,query,binding_list)
-# elif inference_choice == 3:
-#     # Resolution
-#     query_binding = knowledge_base.resolution()
-#     for index in range(len(knowledge_base.list_of_query)):
-#         query = knowledge_base.list_of_query[index]
-#         binding_list = query_binding[index]
-#         print_output(f,query,binding_list)
 
 for query in knowledge_base.list_of_query:
     binding_list = knowledge_base.backward_chaining_ask(query)
