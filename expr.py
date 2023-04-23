@@ -16,8 +16,8 @@ class Expr:
         self.predicate = fact[:pred_ind]
         self.terms = fact[pred_ind:]
         
-        # to_remove = str.maketrans("", "", "() ")
-        # self.terms = self.terms.translate(to_remove)
+        to_remove = str.maketrans("", "", "() ")
+        self.terms = self.terms.translate(to_remove)
 
         if self.predicate == "": 
             self.terms = re.split(splitting, self.terms)

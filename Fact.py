@@ -1,6 +1,6 @@
-from .Utils import rule_terms,regex_and_or
+from Utils import rule_terms,regex_and_or
 import re
-from .expr import Expr
+from expr import Expr
 
 class Fact:
     def __init__ (self, fact):
@@ -13,7 +13,7 @@ class Fact:
         if ":-" in fact: 
             #Rules(X,Y):- condition(X), condition(Y)
             index = fact.index(":-")
-            predicate = Expr(fact[:index])
+            self.lh = Expr(fact[:index])
 
             replacements, pattern = regex_and_or() #get regex pattern
 
@@ -23,9 +23,9 @@ class Fact:
             rh_holder = re.split("AND|OR", rh_holder)
             # rh_holder = ['condition(X)', 'condition(Y)']
             
-            rhs = [Expr(g) for g in rh_holder] 
-            rs = [i.to_string() for i in rhs]
-            fact = (predicate.to_string() + ":-" + ",".join(rs))
+            self.rhs = [Expr(g) for g in rh_holder] 
+            rs = [i.to_string() for i in self.rhs]
+            self.fact = (self.lh.to_string() + ":-" + ",".join(rs))
         else: #if it's normal fact
             self.lh = Expr(fact)
             self.rhs = []

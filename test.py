@@ -1,28 +1,33 @@
-from Utils import regex_and_or
 from expr import Expr
-import re
-def parse(fact):
-    fact = fact.replace(" ", "")
-    #if "rules"
-    if ":-" in fact: 
-        #Rules(X,Y):- condition(X), condition(Y)
-        index = fact.index(":-")
-        predicate = Expr(fact[:index])
+from Fact import Fact
+from Goal import Goal
+from pq import SearchQueue
+from knowledge_base import KnowledgeBase
+from Unify import unify
 
-        replacements, pattern = regex_and_or() #get regex pattern
+new_kb = KnowledgeBase("flavor")
+new_kb(["likes(noor, sausage)",
+        "likes(melissa, pasta)",
+        "likes(dmitry, cookie)",
+        "likes(nikita, sausage)",
+        "likes(assel, limonade)",
+        "food_type(gouda, cheese)",
+        "food_type(ritz, cracker)",
+        "food_type(steak, meat)",
+        "food_type(sausage, meat)",
+        "food_type(limonade, juice)",
+        "food_type(cookie, dessert)",
+        "flavor(sweet, dessert)",
+        "flavor(savory, meat)",
+        "flavor(savory, cheese)",
+        "flavor(sweet, juice)",
+        "food_flavor(X, Y) :- food_type(X, Z), flavor(Y, Z)",
+        "dish_to_like(X, Y) :- likes(X, L), food_type(L, T), flavor(F, T), food_flavor(Y, F), neq(L, Y)"])
 
-        rh_holder = pattern.sub(lambda x: replacements[re.escape(x.group(0))], fact[index + 2:])
-        # rh_holder = condition(X)ANDcondition(Y)
+print(new_kb.query(Expr("likes(noor, pasta)")))
 
-        rh_holder = re.split("AND|OR", rh_holder)
-        # rh_holder = ['condition(X)', 'condition(Y)']
-        
-        rhs = [Expr(g) for g in rh_holder] 
-        rs = [i.to_string() for i in rhs]
-        fact = (predicate.to_string() + ":-" + ",".join(rs))
-    else: #if it's normal fact
-        lh = Expr(fact)
-        rhs = []
-        fact = lh.to_string()
+print(new_kb.query(Expr("food_flavor(What, sweet)")))
 
-parse("Rules(X,Y):- condition(X), condition(Y)")
+print("stop")
+
+

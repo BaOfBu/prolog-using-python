@@ -1,12 +1,12 @@
-from .Utils import term_checker, get_path, prob_parser, pl_read
-from .Fact import Fact
-from .expr import Expr
-from .Goal import Goal
-from .Unify import unify
+from Utils import term_checker, get_path, prob_parser, pl_read
+from Fact import Fact
+from expr import Expr
+from Goal import Goal
+from Unify import unify
 from functools import wraps #, lru_cache
-from .pq import SearchQueue, FactHeap
-from .querizer import *
-from .search_util import *
+from pq import SearchQueue, FactHeap
+from querizer import *
+from search_util import *
 
 class KnowledgeBase(object):
     def __init__(self, name = None):
@@ -26,7 +26,6 @@ class KnowledgeBase(object):
                 self.db[predicate]["facts"].push(i)
                 self.db[predicate]["terms"].push(i.terms)
                 self.db[predicate]["goals"].push(g)
-                #self.db[i.lh.predicate]["terms"].append(i.terms)
             else:
                 predicate = i.lh.predicate
                 self.db[predicate] = {}
@@ -36,8 +35,6 @@ class KnowledgeBase(object):
                 self.db[predicate]["goals"].push(g)
                 self.db[predicate]["terms"] = FactHeap()
                 self.db[predicate]["terms"].push(i.terms)
-                #self.db[i.lh.predicate]["goals"] = [g]
-                #self.db[i.lh.predicate]["terms"] = [i.terms]
             
     def __call__(self, args):
         self.add_kn(args)
@@ -68,7 +65,7 @@ class KnowledgeBase(object):
         self._cache.clear()
 
     def __repr__(self): 
-        return __str__()
+        return "KnowledgeBase: " + self.name
     
 
 # class DeprecationHelper(object):
