@@ -1,1 +1,27 @@
+?- (husband('PrincePhillip', 'QueenElizabethII'))
+True
 
+?- (wife('QueenElizabethII', 'CaptainMarkPhillips'))
+False
+
+?- (father('PrinceCharles', 'AutumnKelly'))
+False
+
+?- (mother('PrincessAnne', 'ZaraPhillips'))
+True
+
+?- (child('PrincessCharlotte', Parent))
+Parent = 'PrinceWilliam'
+Parent = 'KateMiddleton'
+True
+
+?- (son('JamesViscountSevern', Parent))
+Parent = 'PrinceEdward'
+Parent = 'SophieRhys-jones'
+True
+
+?- (grandparent('CaptainMarkPhillips', GC))
+GC = 'SavannahPhillips'
+GC = 'IslaPhillips'
+GC = 'MiaGraceTindall'
+True
