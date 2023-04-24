@@ -158,8 +158,6 @@ Sibling = 'PrinceHarry'.
 Sibling = 'PeterPhillips'.
 
 50?- (aunt('CamillaParkerBowles', NieceNephew))
-NieceNephew = 'PrinceWilliam' ;
-NieceNephew = 'PrinceHarry' ;
 NieceNephew = 'PeterPhillips' ;
 NieceNephew = 'ZaraPhillips' ;
 NieceNephew = 'PrincessBeatrice' ;
@@ -180,7 +178,4 @@ AuntUncle = 'AutumnKelly' ;
 AuntUncle = 'PeterPhillips'.
 
 53?- (nephew('PrinceGeorge', AuntUncle))
-AuntUncle = 'KateMiddleton' ;
-AuntUncle = 'PrinceWilliam' ;
 AuntUncle = 'PrinceHarry'.
-

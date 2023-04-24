@@ -19,7 +19,7 @@ else:
     input_file = 'input_hcmus.txt'
     output_file = 'output_hcmus.txt'
     queries_file = "queries_hcmus.txt"
-
+    
 knowledge_base = KnowledgeBase()
 knowledge_base.input_from_file(input_file,queries_file)
 

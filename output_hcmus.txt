@@ -127,49 +127,53 @@ false .
 true .
 
 39?- (dean_same_academic_rank('DaoNguyenKhoi', 'NguyenTrungNhan'))
-false .
+true .
 
 40?- (vice_dean_same_academic_rank('NguyenVanVu', 'TruongHaiNhung'))
-false .
+true .
 
 41?- (dean_same_academic_degree('DinhBaTien', 'PhamTrungHieu'))
-false .
+true .
 
 42?- (vice_dean_same_academic_degree('CaoTranBaThuong', 'NongThiQuynhAnh'))
 false .
 
 43?- (vice_dean_same_academic_degree('CaoTranBaThuong', ViceDean2))
-false .
+ViceDean2 = 'VanChiNam' ;
+ViceDean2 = 'VoDucCamHai' ;
+ViceDean2 = 'NguyenThuHuong'.
 
 44?- (head_department_same_academic_rank('NguyenLeHoangAnh', 'DangDucTrong'))
 false .
 
 45?- (deputy_head_department_same_academic_rank('DinhDien', 'TonThatQuang'))
-false .
+true .
 
 46?- (head_department_same_academic_degree('PhamNguyenCuong', 'NguyenChiNhan'))
-false .
+true .
 
 47?- (deputy_head_department_same_academic_degree('HoPhamAnhVu', 'NguyenMinhTri'))
 false .
 
 48?- (deputy_head_department_same_academic_degree('HoPhamAnhVu', DeputyHeadDepartment2))
-false .
+DeputyHeadDepartment2 = 'NguyenThiThanhThuy' ;
+DeputyHeadDepartment2 = 'DoanNguyenVu' ;
+DeputyHeadDepartment2 = 'TranCongThanh'.
 
 49?- (head_lab_same_academic_rank('VuHaiQuan', 'TranLinhThuoc'))
 false .
 
 50?- (vice_head_lab_same_academic_rank('PhamVanPhuc', 'PhanBachThang'))
-false .
+true .
 
 51?- (head_lab_same_academic_degree('VuHaiQuan', 'TranLinhThuoc'))
-false .
+true .
 
 52?- (vice_head_lab_same_academic_degree('TranMinhTriet', 'PhanThiPhuongTrang'))
-false .
+true .
 
-53?- (vice_chancellor_head_department('NguyenThiThanhMai'))
-false .
+53?- (vice_chancellor_head_department('NguyenThiThanhMai', 'HCMUS'))
+true .
 
 54?- (dean_faculty_head_department('MaiHoangBien'))
 true .

@@ -143,10 +143,10 @@ granddaughter(GD, GP) :- female(GD), grandchild(GD, GP).
 sibling(Person1, Person2) :-parent(P, Person1),parent(P, Person2),\=(Person1,Person2). 
 
 % Predicates for brother
-brother(Person, Sibling) :-male(Person),sibling(Person, Sibling).
+brother(Person, Sibling) :-male(Person),sibling(Person, Sibling),\=(Person,Sibling).
 
 % Predicates for sister
-sister(Person, Sibling) :-female(Person),sibling(Person, Sibling).
+sister(Person, Sibling) :-female(Person),sibling(Person, Sibling),\=(Person,Sibling).
 
 % Predicates for aunt
 aunt(Person, NieceNephew):- female(Person),parent(Parent, NieceNephew), (sister(Person, Parent); (brother(Uncle, Parent), wife(Person, Uncle))).

@@ -174,7 +174,7 @@ true.
 ?- vice_head_lab_same_academic_degree('Tran Minh Triet', 'Phan Thi Phuong Trang').
 true .
 
-?- vice_chancellor_head_department('Nguyen Thi Thanh Mai').
+?- vice_chancellor_head_department('Nguyen Thi Thanh Mai','HCMUS').
 true.
 
 ?- dean_faculty_head_department('Mai Hoang Bien').

@@ -158,8 +158,6 @@ Sibling = 'Prince Harry'.
 Sibling = 'Peter Phillips'.
 
 ?- aunt('Camilla Parker Bowles', NieceNephew).
-NieceNephew = 'PrinceWilliam' ;
-NieceNephew = 'PrinceHarry' ;
 NieceNephew = 'Peter Phillips' ;
 NieceNephew = 'Zara Phillips' ;
 NieceNephew = 'Princess Beatrice' ;

@@ -146,7 +146,7 @@ def print_output(f, query, binding_list,index):
                             str_bind += term + ' = ' + binding.binding_dict[term]
             if res.count(str_bind) == 0:
                 res += str_bind + ' ;\n'
-    
+
     if (is_fail == 'true'):
         is_fail = 'false'
     else: is_fail = 'true'
