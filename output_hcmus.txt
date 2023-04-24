@@ -1,42 +1,42 @@
-1?- (same_vice_chancellor('NguyenThiThanhMai', 'TranMinhTriet', 'HCMUS'))
+?- (same_vice_chancellor('NguyenThiThanhMai', 'TranMinhTriet', 'HCMUS'))
 true .
 
-2?- (affiliated_university('Faculties', 'HCMUS'))
+?- (affiliated_university('Faculties', 'HCMUS'))
 true .
 
-3?- (branch_unit('MathematicsandComputerScience', 'Faculties'))
+?- (branch_unit('MathematicsandComputerScience', 'Faculties'))
 true .
 
-4?- (branch_unit('ElectronicsandTelecommunications', 'Laboratories'))
+?- (branch_unit('ElectronicsandTelecommunications', 'Laboratories'))
 false .
 
-5?- (departments_same_faculty('Hydrogeology-EngineeringGeology', 'MarineandPetroleumGeology', 'Geolory'))
+?- (departments_same_faculty('Hydrogeology-EngineeringGeology', 'MarineandPetroleumGeology', 'Geolory'))
 true .
 
-6?- (departments_same_faculty('ComputerScience', 'SoftwareEngineering', 'Physics-EngineeringPhysics'))
+?- (departments_same_faculty('ComputerScience', 'SoftwareEngineering', 'Physics-EngineeringPhysics'))
 false .
 
-7?- (departments_same_faculty('PhysicalChemistry', 'InorganicandAppliedChemistry', Faculty))
+?- (departments_same_faculty('PhysicalChemistry', 'InorganicandAppliedChemistry', Faculty))
 Faculty = 'Chemistry'.
 
-8?- (same_academic_rank('LyQuocNgoc', 'HuynhVanTuan', 'Prof'))
+?- (same_academic_rank('LyQuocNgoc', 'HuynhVanTuan', 'Prof'))
 false .
 
-9?- (same_academic_rank('LyQuocNgoc', 'HuynhVanTuan', AcademicRank))
+?- (same_academic_rank('LyQuocNgoc', 'HuynhVanTuan', AcademicRank))
 AcademicRank = 'Assoc.Prof'.
 
-10?- (same_academic_rank('BuiXuanHai', Lecture2, 'Prof'))
+?- (same_academic_rank('BuiXuanHai', Lecture2, 'Prof'))
 Lecture2 = 'TranLeQuan' ;
 Lecture2 = 'DangDucTrong' ;
 Lecture2 = 'TranLinhThuoc'.
 
-11?- (same_academic_degree('LeDucHung', 'PhamKimNgoc', 'M.SC'))
+?- (same_academic_degree('LeDucHung', 'PhamKimNgoc', 'M.SC'))
 false .
 
-12?- (same_academic_degree('LeDucHung', 'PhamKimNgoc', AcademicDegree))
+?- (same_academic_degree('LeDucHung', 'PhamKimNgoc', AcademicDegree))
 AcademicDegree = 'PhD'.
 
-13?- (same_academic_degree('VoDucCamHai', Lecture2, 'M.SC'))
+?- (same_academic_degree('VoDucCamHai', Lecture2, 'M.SC'))
 Lecture2 = 'VanChiNam' ;
 Lecture2 = 'CaoTranBaThuong' ;
 Lecture2 = 'NguyenThuHuong' ;
@@ -46,147 +46,147 @@ Lecture2 = 'NguyenThiThanhThuy' ;
 Lecture2 = 'DoanNguyenVu' ;
 Lecture2 = 'TranCongThanh'.
 
-14?- (same_academic_titles('NguyenThaiHoang', 'TruongHaiNhung'))
+?- (same_academic_titles('NguyenThaiHoang', 'TruongHaiNhung'))
 true .
 
-15?- (same_faculty('NguyenLeHoangAnh', 'HoangVanHa', 'MathematicsandComputerScience'))
+?- (same_faculty('NguyenLeHoangAnh', 'HoangVanHa', 'MathematicsandComputerScience'))
 true .
 
-16?- (same_faculty('HoangThiDongQuy', 'TonThatQuang', 'MaterialsScienceandTechnology'))
+?- (same_faculty('HoangThiDongQuy', 'TonThatQuang', 'MaterialsScienceandTechnology'))
 false .
 
-17?- (same_faculty('HoangThiDongQuy', Lecture2, 'MaterialsScienceandTechnology'))
+?- (same_faculty('HoangThiDongQuy', Lecture2, 'MaterialsScienceandTechnology'))
 Lecture2 = 'TranThiThanhVan' ;
 Lecture2 = 'HaThucChiNhan' ;
 Lecture2 = 'PhamKimNgoc' ;
 Lecture2 = 'LeVanHieu'.
 
-18?- (same_department('LeTienKhoa', 'NguyenThiThanhThuy', 'InorganicandAppliedChemistry'))
+?- (same_department('LeTienKhoa', 'NguyenThiThanhThuy', 'InorganicandAppliedChemistry'))
 true .
 
-19?- (same_department('NguyenVanVu', 'NguyenThiMinhTuyen', 'ComputerScience'))
+?- (same_department('NguyenVanVu', 'NguyenThiMinhTuyen', 'ComputerScience'))
 false .
 
-20?- (same_department('NguyenVanVu', 'NguyenThiMinhTuyen', Department))
+?- (same_department('NguyenVanVu', 'NguyenThiMinhTuyen', Department))
 Department = 'SoftwareEngineering'.
 
-21?- (same_laboratory('TranLinhThuoc', 'PhamVanPhuc', 'StemCellInstitute'))
+?- (same_laboratory('TranLinhThuoc', 'PhamVanPhuc', 'StemCellInstitute'))
 false .
 
-22?- (same_laboratory('TranLinhThuoc', Lecture2, 'CancerResearchLaboratory'))
+?- (same_laboratory('TranLinhThuoc', Lecture2, 'CancerResearchLaboratory'))
 Lecture2 = 'PhamVanPhuc' ;
 Lecture2 = 'DangThiPhuongThao'.
 
-23?- (same_laboratory('DangThiPhuongThao', 'PhanThiPhuongTrang', 'MolecularBiotechnologyLaboratory'))
+?- (same_laboratory('DangThiPhuongThao', 'PhanThiPhuongTrang', 'MolecularBiotechnologyLaboratory'))
 true .
 
-24?- (same_academic_rank_faculty('DaoNguyenKhoi', 'ToThiHien'))
+?- (same_academic_rank_faculty('DaoNguyenKhoi', 'ToThiHien'))
 true .
 
-25?- (same_academic_rank_faculty('DaoNguyenKhoi', Lecture2))
+?- (same_academic_rank_faculty('DaoNguyenKhoi', Lecture2))
 Lecture2 = 'VuVanNghi' ;
 Lecture2 = 'ToThiHien'.
 
-26?- (same_academic_rank_faculty('NguyenThiKimDung', 'DoanNguyenVu'))
+?- (same_academic_rank_faculty('NguyenThiKimDung', 'DoanNguyenVu'))
 false .
 
-27?- (same_academic_rank_department('MaiHoangBien', 'BuiXuanHai'))
+?- (same_academic_rank_department('MaiHoangBien', 'BuiXuanHai'))
 false .
 
-28?- (same_academic_rank_department('NguyenDinhThuc', 'DinhDien'))
+?- (same_academic_rank_department('NguyenDinhThuc', 'DinhDien'))
 true .
 
-29?- (same_academic_rank_laboratory('TranCaoVinh', 'TranQuangTrung'))
+?- (same_academic_rank_laboratory('TranCaoVinh', 'TranQuangTrung'))
 true .
 
-30?- (same_academic_degree_faculty('TruongHaiNhung', 'NgoDaiNghiep'))
+?- (same_academic_degree_faculty('TruongHaiNhung', 'NgoDaiNghiep'))
 true .
 
-31?- (same_academic_degree_faculty('NguyenDucHoang', 'DoanNguyenVu'))
+?- (same_academic_degree_faculty('NguyenDucHoang', 'DoanNguyenVu'))
 false .
 
-32?- (same_academic_degree_department('NguyenThaiHoang', 'HoPhamAnhVu'))
+?- (same_academic_degree_department('NguyenThaiHoang', 'HoPhamAnhVu'))
 false .
 
-33?- (same_academic_degree_department('DangLeKhoa', 'NguyenMinhTri'))
+?- (same_academic_degree_department('DangLeKhoa', 'NguyenMinhTri'))
 true .
 
-34?- (same_academic_degree_laboratory('PhamVanPhuc', 'DangThiPhuongThao'))
+?- (same_academic_degree_laboratory('PhamVanPhuc', 'DangThiPhuongThao'))
 true .
 
-35?- (same_academic_degree_laboratory('NguyenChiNhan', 'TranVanMan'))
+?- (same_academic_degree_laboratory('NguyenChiNhan', 'TranVanMan'))
 false .
 
-36?- (same_academic_titles_faculty('QuachNgoDiemPhuong', 'TranThanhHuong'))
+?- (same_academic_titles_faculty('QuachNgoDiemPhuong', 'TranThanhHuong'))
 true .
 
-37?- (same_academic_titles_department('LeTienKhoa', 'NguyenThiThanhThuy'))
+?- (same_academic_titles_department('LeTienKhoa', 'NguyenThiThanhThuy'))
 false .
 
-38?- (same_academic_titles_laboratory('DangThiPhuongThao', 'PhanThiPhuongTrang'))
+?- (same_academic_titles_laboratory('DangThiPhuongThao', 'PhanThiPhuongTrang'))
 true .
 
-39?- (dean_same_academic_rank('DaoNguyenKhoi', 'NguyenTrungNhan'))
+?- (dean_same_academic_rank('DaoNguyenKhoi', 'NguyenTrungNhan'))
 true .
 
-40?- (vice_dean_same_academic_rank('NguyenVanVu', 'TruongHaiNhung'))
+?- (vice_dean_same_academic_rank('NguyenVanVu', 'TruongHaiNhung'))
 true .
 
-41?- (dean_same_academic_degree('DinhBaTien', 'PhamTrungHieu'))
+?- (dean_same_academic_degree('DinhBaTien', 'PhamTrungHieu'))
 true .
 
-42?- (vice_dean_same_academic_degree('CaoTranBaThuong', 'NongThiQuynhAnh'))
+?- (vice_dean_same_academic_degree('CaoTranBaThuong', 'NongThiQuynhAnh'))
 false .
 
-43?- (vice_dean_same_academic_degree('CaoTranBaThuong', ViceDean2))
+?- (vice_dean_same_academic_degree('CaoTranBaThuong', ViceDean2))
 ViceDean2 = 'VanChiNam' ;
 ViceDean2 = 'VoDucCamHai' ;
 ViceDean2 = 'NguyenThuHuong'.
 
-44?- (head_department_same_academic_rank('NguyenLeHoangAnh', 'DangDucTrong'))
+?- (head_department_same_academic_rank('NguyenLeHoangAnh', 'DangDucTrong'))
 false .
 
-45?- (deputy_head_department_same_academic_rank('DinhDien', 'TonThatQuang'))
+?- (deputy_head_department_same_academic_rank('DinhDien', 'TonThatQuang'))
 true .
 
-46?- (head_department_same_academic_degree('PhamNguyenCuong', 'NguyenChiNhan'))
+?- (head_department_same_academic_degree('PhamNguyenCuong', 'NguyenChiNhan'))
 true .
 
-47?- (deputy_head_department_same_academic_degree('HoPhamAnhVu', 'NguyenMinhTri'))
+?- (deputy_head_department_same_academic_degree('HoPhamAnhVu', 'NguyenMinhTri'))
 false .
 
-48?- (deputy_head_department_same_academic_degree('HoPhamAnhVu', DeputyHeadDepartment2))
+?- (deputy_head_department_same_academic_degree('HoPhamAnhVu', DeputyHeadDepartment2))
 DeputyHeadDepartment2 = 'NguyenThiThanhThuy' ;
 DeputyHeadDepartment2 = 'DoanNguyenVu' ;
 DeputyHeadDepartment2 = 'TranCongThanh'.
 
-49?- (head_lab_same_academic_rank('VuHaiQuan', 'TranLinhThuoc'))
+?- (head_lab_same_academic_rank('VuHaiQuan', 'TranLinhThuoc'))
 false .
 
-50?- (vice_head_lab_same_academic_rank('PhamVanPhuc', 'PhanBachThang'))
+?- (vice_head_lab_same_academic_rank('PhamVanPhuc', 'PhanBachThang'))
 true .
 
-51?- (head_lab_same_academic_degree('VuHaiQuan', 'TranLinhThuoc'))
+?- (head_lab_same_academic_degree('VuHaiQuan', 'TranLinhThuoc'))
 true .
 
-52?- (vice_head_lab_same_academic_degree('TranMinhTriet', 'PhanThiPhuongTrang'))
+?- (vice_head_lab_same_academic_degree('TranMinhTriet', 'PhanThiPhuongTrang'))
 true .
 
-53?- (vice_chancellor_head_department('NguyenThiThanhMai', 'HCMUS'))
+?- (vice_chancellor_head_department('NguyenThiThanhMai', 'HCMUS'))
 true .
 
-54?- (dean_faculty_head_department('MaiHoangBien'))
+?- (dean_faculty_head_department('MaiHoangBien'))
 true .
 
-55?- (dean_faculty_head_department('DinhBaTien'))
+?- (dean_faculty_head_department('DinhBaTien'))
 false .
 
-56?- (vice_dean_faculty_head_department('DangLeKhoa'))
+?- (vice_dean_faculty_head_department('DangLeKhoa'))
 true .
 
-57?- (vice_dean_faculty_head_department('BuiXuanHai'))
+?- (vice_dean_faculty_head_department('BuiXuanHai'))
 false .
 
-58?- (vice_dean_faculty_deputy_head_department('HoangVanHa'))
+?- (vice_dean_faculty_deputy_head_department('HoangVanHa'))
 true .
 

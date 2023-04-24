@@ -129,9 +129,9 @@ def unify_var(var,x,binding):
         binding.add_new_binding(var,x)
         return binding
 
-def print_output(f, query, binding_list,index):
+def print_output(f, query, binding_list):
     #print('?- ' + str(query))
-    f.write(str(index) + '?- ' + str(query) + '\n')
+    f.write('?- ' + str(query) + '\n')
     is_fail = 'true'
     res = ''
     for binding in binding_list.binding_list:

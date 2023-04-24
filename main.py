@@ -19,16 +19,13 @@ else:
     input_file = 'input_hcmus.txt'
     output_file = 'output_hcmus.txt'
     queries_file = "queries_hcmus.txt"
-    
+
 knowledge_base = KnowledgeBase()
 knowledge_base.input_from_file(input_file,queries_file)
 
 print("Backward chaining")
 f = open(output_file,'w')
 
-index = 1
 for query in knowledge_base.list_of_query:
     binding_list = knowledge_base.backward_chaining_ask(query)
-    print_output(f,query,binding_list,index)
-    index += 1
-
+    print_output(f,query,binding_list)

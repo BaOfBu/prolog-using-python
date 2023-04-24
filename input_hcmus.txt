@@ -716,29 +716,29 @@ same_academic_titles_laboratory(Lec1, Lec2):-same_academic_titles(Lec1, Lec2),la
 
 % sai tu day
 
-dean_same_academic_rank(Lec1, Lec2):-academic_rank(Lec1, AR), academic_rank(Lec2, AR),faculty(F1, Lec1), dean_faculty(F1, Lec1),faculty(F2, Lec2), dean_faculty(F2, Lec2),\=(F1,F2).
+dean_same_academic_rank(Lec1, Lec2):-academic_rank(Lec1, AR), academic_rank(Lec2, AR),faculty(F1, Lec1), dean_faculty(F1, Lec1),faculty(F2, Lec2), dean_faculty(F2, Lec2),\=(Lec1,Lec2).
 
-vice_dean_same_academic_rank(Lec1, Lec2):-faculty(F1, Lec1), vice_dean_faculty(F1, Lec1),faculty(F2, Lec2), vice_dean_faculty(F2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(F1,F2).
+vice_dean_same_academic_rank(Lec1, Lec2):-faculty(F1, Lec1), vice_dean_faculty(F1, Lec1),faculty(F2, Lec2), vice_dean_faculty(F2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(Lec1,Lec2).
 
-dean_same_academic_degree(Lec1, Lec2):-faculty(F1, Lec1), dean_faculty(F1, Lec1),faculty(F2, Lec2), dean_faculty(F2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(F1,F2).
+dean_same_academic_degree(Lec1, Lec2):-faculty(F1, Lec1), dean_faculty(F1, Lec1),faculty(F2, Lec2), dean_faculty(F2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(Lec1,Lec2).
 
-vice_dean_same_academic_degree(Lec1, Lec2):-faculty(F1, Lec1), vice_dean_faculty(F1, Lec1),faculty(F2, Lec2), vice_dean_faculty(F2, Lec2), academic_degree(Lec1, AD),academic_degree(Lec2, AD),\=(F1,F2)
+vice_dean_same_academic_degree(Lec1, Lec2):-faculty(F1, Lec1), vice_dean_faculty(F1, Lec1),faculty(F2, Lec2), vice_dean_faculty(F2, Lec2), academic_degree(Lec1, AD),academic_degree(Lec2, AD),\=(Lec1,Lec2)
 
-head_department_same_academic_rank(Lec1, Lec2):-department(D1, Lec1), head_department(D1, Lec1),department(D2, Lec2), head_department(D2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(D1,D2).
+head_department_same_academic_rank(Lec1, Lec2):-department(D1, Lec1), head_department(D1, Lec1),department(D2, Lec2), head_department(D2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(Lec1,Lec2).
 
-deputy_head_department_same_academic_rank(Lec1, Lec2):-department(D1, Lec1), deputy_head_department(D1, Lec1),department(D2, Lec2), deputy_head_department(D2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(D1,D2).
+deputy_head_department_same_academic_rank(Lec1, Lec2):-department(D1, Lec1), deputy_head_department(D1, Lec1),department(D2, Lec2), deputy_head_department(D2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(Lec1,Lec2).
 
-head_department_same_academic_degree(Lec1, Lec2):-department(D1, Lec1), head_department(D1, Lec1),department(D2, Lec2), head_department(D2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(D1,D2).
+head_department_same_academic_degree(Lec1, Lec2):-department(D1, Lec1), head_department(D1, Lec1),department(D2, Lec2), head_department(D2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(Lec1,Lec2).
 
-deputy_head_department_same_academic_degree(Lec1, Lec2):-department(D1, Lec1), deputy_head_department(D1, Lec1),department(D2, Lec2), deputy_head_department(D2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(D1,D2).
+deputy_head_department_same_academic_degree(Lec1, Lec2):-department(D1, Lec1), deputy_head_department(D1, Lec1),department(D2, Lec2), deputy_head_department(D2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(Lec1,Lec2).
 
-head_lab_same_academic_rank(Lec1, Lec2):-laboratory(Lab1, Lec1), head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), head_lab(Lab2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(Lab1,Lab2).
+head_lab_same_academic_rank(Lec1, Lec2):-laboratory(Lab1, Lec1), head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), head_lab(Lab2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(Lec1,Lec2).
 
-vice_head_lab_same_academic_rank(Lec1, Lec2):-laboratory(Lab1, Lec1), vice_head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), vice_head_lab(Lab2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(Lab1,Lab2).
+vice_head_lab_same_academic_rank(Lec1, Lec2):-laboratory(Lab1, Lec1), vice_head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), vice_head_lab(Lab2, Lec2),academic_rank(Lec1, AR), academic_rank(Lec2, AR),\=(Lec1,Lec2).
 
-head_lab_same_academic_degree(Lec1, Lec2):-laboratory(Lab1, Lec1), head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), head_lab(Lab2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(Lab1,Lab2).
+head_lab_same_academic_degree(Lec1, Lec2):-laboratory(Lab1, Lec1), head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), head_lab(Lab2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(Lec1,Lec2).
 
-vice_head_lab_same_academic_degree(Lec1, Lec2):-laboratory(Lab1, Lec1), vice_head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), vice_head_lab(Lab2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(Lab1,Lab2).
+vice_head_lab_same_academic_degree(Lec1, Lec2):-laboratory(Lab1, Lec1), vice_head_lab(Lab1, Lec1),laboratory(Lab2, Lec2), vice_head_lab(Lab2, Lec2),academic_degree(Lec1, AD), academic_degree(Lec2, AD),\=(Lec1,Lec2).
 
 vice_chancellor_head_department(Lec, Uni):-vice_chancellor(Uni, Lec),department(D, Lec), head_department(D, Lec).
 
