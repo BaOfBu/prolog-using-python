@@ -160,4 +160,10 @@ niece(Person, AuntUncle):-female(Person), (aunt(AuntUncle, Person); uncle(AuntUn
 % Predicates for nephew
 nephew(Person, AuntUncle):-male(Person), (aunt(AuntUncle, Person); uncle(AuntUncle, Person)).
 
+?- husband('Prince Phillip', 'Queen Elizabeth II').
+?- wife('Queen Elizabeth II', 'Captain Mark Phillips').
+?- father('Prince Charles', 'Autumn Kelly').
+?- mother('Princess Anne', 'Zara Phillips').
 ?- child('Princess Charlotte', Parent).
+?- son('James Viscount Severn', Parent).
+?- grandparent('Captain Mark Phillips', GC).
