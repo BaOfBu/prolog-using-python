@@ -1,95 +1,95 @@
 ?- (husband('PrincePhillip', 'QueenElizabethII'))
-true .
+True.
 
 ?- (wife('QueenElizabethII', 'CaptainMarkPhillips'))
-false .
+False.
 
 ?- (father('PrinceCharles', 'AutumnKelly'))
-false .
+False.
 
 ?- (mother('PrincessAnne', 'ZaraPhillips'))
-true .
+True.
 
 ?- (child('MikeTindall', 'TimothyLaurence'))
-false .
+False.
 
 ?- (son('PrincessBeatrice', 'PrinceAndrew'))
-false .
+False.
 
 ?- (daughter('PrincessEugenie', 'SarahFerguson'))
-true .
+True.
 
 ?- (grandparent('QueenElizabethII', 'JamesViscountSevern'))
-true .
+True.
 
 ?- (grandmother('PrincePhillip', 'LadyLouiseMountbatten-Windsor'))
-false .
+False.
 
 ?- (grandfather('PrincePhillip', 'PrincessBeatrice'))
-true .
+True.
 
 ?- (grandchild('PrinceGeorge', 'PrincessAnne'))
-false .
+False.
 
 ?- (grandson('PrincessCharlotte', 'PrinceCharles'))
-false .
+False.
 
 ?- (granddaughter('SavannahPhillips', 'CaptainMarkPhillips'))
-true .
+True.
 
 ?- (sibling('SavannahPhillips', 'IslaPhillips'))
-true .
+True.
 
 ?- (brother('JamesViscountSevern', 'LadyLouiseMountbatten-Windsor'))
-true .
+True.
 
 ?- (sister('PrinceGeorge', 'PrincessCharlotte'))
-false .
+False.
 
 ?- (aunt('PrincessDiana', 'PeterPhillips'))
-false .
+False.
 
 ?- (uncle('PrinceCharles', 'ZaraPhillips'))
-true .
+True.
 
 ?- (niece('PrincessCharlotte', 'PrinceHarry'))
-true .
+True.
 
 ?- (nephew('JamesViscountSevern', 'PrincessBeatrice'))
-false .
+False.
 
 ?- (divorced('PrinceCharles', 'CamillaParkerBowles'))
-false .
+False.
 
 ?- (divorced('SarahFerguson', 'PrinceAndrew'))
-true .
+True.
 
 ?- (parent('SophieRhys-jones', 'PrincessEugenie'))
-false .
+False.
 
 ?- (parent('ZaraPhillips', 'SavannahPhillips'))
-false .
+False.
 
 ?- (parent('MikeTindall', 'MiaGraceTindall'))
-true .
+True.
 
 ?- (male('IslaPhillips'))
-false .
+False.
 
 ?- (male('PeterPhillips'))
-true .
+True.
 
 ?- (female('PrinceAndrew'))
-false .
+False.
 
 ?- (female('PrincessAnne'))
-true .
+True.
 
 ?- (married('PrinceWilliam', 'KateMiddleton'))
-true .
+True.
 
 ?- (married('AutumnKelly', 'MikeTindall'))
-false .
+False.
 
 ?- (husband('PrinceEdward', Wife))
 Wife = 'SophieRhys-jones'.
@@ -102,7 +102,7 @@ Child = 'PrinceGeorge' ;
 Child = 'PrincessCharlotte'.
 
 ?- (mother('PeterPhillips', Child))
-false .
+False.
 
 ?- (mother('ZaraPhillips', Child))
 Child = 'MiaGraceTindall'.

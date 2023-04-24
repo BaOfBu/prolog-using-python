@@ -1,30 +1,31 @@
 from Utils import is_variable
+from conDisjunction import Conjunction, Disjunction
+from statement import Statement
+from term import Term
 
 class Binding:
     def __init__(self):
         self.binding_dict = {}
         self.is_fail = False
+        
     def add_new_binding(self, key, value):
         #Key and value is term
         self.binding_dict[key.term] = value.term
+
     def already_has(self, key):
         return key.term in self.binding_dict
-    def bind(self,x):
-
-        from conDisjunction import Conjunction, Disjunction
-        from statement import Statement
-        from term import Term
-        
-        if isinstance(x,Term):
-            if x.term in self.binding_dict:
-                return Term(self.binding_dict[x.term])
-            else:
-                return x
-        elif isinstance(x,Statement):
+    
+    def bind(self,x):        
+        if isinstance(x,Statement):
             list_of_terms = []
             for term in x.list_of_terms:
                 list_of_terms.append(self.bind(term))
             return Statement(list_of_terms=list_of_terms,predicate=x.predicate, negative = x.negative)
+        elif isinstance(x,Term):
+            if x.term in self.binding_dict:
+                return Term(self.binding_dict[x.term])
+            else:
+                return x
         elif isinstance(x,Conjunction):
             list_of_statements = []
             for statement in x.list_of_statements:
@@ -35,6 +36,7 @@ class Binding:
             for statement in x.list_of_statements:
                 list_of_statements.append(self.bind(statement))
             return Disjunction(list_of_statements=list_of_statements)
+        
     def merge(self,obj):
         res = Binding()
         if self.is_fail or obj.is_fail:
@@ -64,11 +66,13 @@ class Binding:
             res.is_fail = is_fail
         return res
     
+
 class ListOfBinding:
     def __init__(self, binding_list = []):
         if isinstance(binding_list,Binding):
             binding_list = [binding_list]
         self.binding_list = binding_list
+
     def merge_or(self, obj):
         if isinstance(obj,Binding):
             obj = ListOfBinding(binding_list=[obj])
@@ -80,6 +84,7 @@ class ListOfBinding:
             if not binding.is_fail:
                 new_binding_list.append(binding)
         return ListOfBinding(new_binding_list)
+    
     def merge_and(self,obj):
         if isinstance(obj,Binding):
             obj = ListOfBinding(binding_list=[obj])

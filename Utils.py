@@ -1,10 +1,13 @@
+from statement import Statement
+from conDisjunction import Conjunction, Disjunction
+
 abstract_name = '_/*'
 
 def is_variable(term):
-        if term[0].isupper() or term.startswith('_'):
-            return True
-        else:
-            return False
+    if term[0].isupper() or term.startswith('_'):
+        return True
+    else:
+        return False
 
 def is_operator(c):
     return c=='&' or c == ';'
@@ -41,8 +44,6 @@ def change_to_RPN(tokens):
 #Process RPN and convert to conjunction
 def convert_to_conjunction(tokens):
 
-    from statement import Statement
-    from conDisjunction import Conjunction, Disjunction
     from term import Term
 
     stack = []
@@ -89,15 +90,12 @@ def process_string(s):
         else:
             name+=ch
     rpn = change_to_RPN(tokens)
-    #print(rpn)
     output_line = convert_to_conjunction(rpn)
     return output_line
 
 
 def unify(x,y, binding):
 
-    from statement import Statement
-    from conDisjunction import Conjunction, Disjunction
     from term import Term
 
     if binding.is_fail:
@@ -109,7 +107,7 @@ def unify(x,y, binding):
     elif isinstance(y,Term) and y.is_var:
         return unify_var(y,x,binding)
     elif isinstance(x,Statement) and isinstance(y,Statement):
-        if x.is_unificable(y):
+        if x.is_unifiable(y):
             return unify(x.list_of_terms,y.list_of_terms,binding)
     elif (isinstance(x,Conjunction) and isinstance(y,Conjunction)) or (isinstance(x,Disjunction) and isinstance(y,Disjunction)):
         if len(x.list_of_statements)==len(y.list_of_statements):
@@ -130,13 +128,12 @@ def unify_var(var,x,binding):
         return binding
 
 def print_output(f, query, binding_list):
-    #print('?- ' + str(query))
     f.write('?- ' + str(query) + '\n')
-    is_fail = 'true'
+    is_fail = True
     res = ''
     for binding in binding_list.binding_list:
         if binding.is_fail == False:
-            is_fail = 'false'
+            is_fail = False
             str_bind = ''
             for term in query.get_list_var():
                 if not term.startswith(abstract_name):
@@ -147,15 +144,9 @@ def print_output(f, query, binding_list):
             if res.count(str_bind) == 0:
                 res += str_bind + ' ;\n'
 
-    if (is_fail == 'true'):
-        is_fail = 'false'
-    else: is_fail = 'true'
-
     if res == '':
-        #print(is_fail + ' .\n')
-        f.write(is_fail + ' .\n\n')
+        f.write(str(not is_fail) + '.\n\n')
     else:
         res = res[:-3]
         res += '.\n\n'
-        #print(res)
         f.write(res)

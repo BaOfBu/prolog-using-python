@@ -2,8 +2,6 @@ from rule import Rule
 from statement import Statement
 from conDisjunction import Conjunction, Disjunction
 from binding import Binding, ListOfBinding
-from cnf import CNF
-from term import Term
 from Utils import process_string, unify
 
 class KnowledgeBase:
@@ -12,31 +10,28 @@ class KnowledgeBase:
         self.list_of_rules = []
         self.list_of_facts = []
         self.list_of_query = []
+
     def input_from_file(self, filename_input,queries_input):
         with open(filename_input,'r') as f:
             index = 1
             for line in f:
-                #print(index)
                 index += 1
                 line = line.strip()
                 line = line.replace(" ","")
                 line = line.replace("),",")&")
                 if not line.startswith('%') and line != '':
                     expr = line.split(':-')
-                    #print(expr[0])
                     new_rule = None
-                    if len(expr) == 2:
+                    if len(expr) == 1:
+                        new_rule = process_string(expr[0]).list_of_statements[0]
+                        new_rule.standardize_variable()
+                        self.list_of_facts.append(new_rule)
+                    else:
                         new_rule = Rule(process_string(expr[0]).list_of_statements[0], process_string(expr[1]))
                         self.list_of_rules.append(new_rule)
-                    elif len(expr)==1:
-                        new_rule = process_string(expr[0]).list_of_statements[0]
-                        new_rule.standardlize_variable()
-                        self.list_of_facts.append(new_rule)
-
         with open(queries_input,'r') as f1:
             index = 1
             for line in f1:
-                #print(index)
                 index += 1
                 line = line.strip()
                 line = line.replace(" ","")
@@ -44,7 +39,7 @@ class KnowledgeBase:
                 if line.startswith('?-'):
                     line = line[2:].strip()
                     query = process_string(line)
-                    query.standardlize_abstract_variable()
+                    query.standardize_abstract_variable()
                     self.list_of_query.append(query)
                     
         # Split rule
@@ -56,7 +51,7 @@ class KnowledgeBase:
         for rule in self.list_of_rules:
             rule.eliminate_difference()
             rule.get_supported_fact(self.list_of_facts)
-            rule.standardlize_variable()
+            rule.standardize_variable()
     
     def __str__(self):
         output = ''
@@ -65,6 +60,7 @@ class KnowledgeBase:
         for fact in self.list_of_facts:
             output+= str(fact) + '\n'
         return output
+    
     # Backward chaining
     def backward_chaining_ask(self,goal):
         list_of_binding = None
@@ -83,24 +79,26 @@ class KnowledgeBase:
                 else:
                     list_of_binding = self.backward_chaining_ask(subgoal)
         return list_of_binding
+    
     def backward_chaining_or(self,goal):
         binding_list = ListOfBinding([])
         for fact in self.list_of_facts:
-            if fact.is_unificable(goal):
+            if fact.is_unifiable(goal):
                 binding = Binding()
                 unify(fact,goal,binding)
                 if not binding.is_fail:
                     binding_list.binding_list.append(binding)
         for rule in self.list_of_rules:
-            if rule.lhs.is_unificable(goal):
+            if rule.left.is_unifiable(goal):
                 binding = Binding()
-                unify(rule.lhs, goal, binding)
+                unify(rule.left, goal, binding)
                 if not binding.is_fail:
                     binding_list = binding_list.merge_or(self.backward_chaining_and(rule,binding))
         return binding_list
-    def backward_chaining_and(self, rule, binding_rhs):
-        binding_list = ListOfBinding([binding_rhs])
-        new_rule = binding_rhs.bind(rule.rhs)
+    
+    def backward_chaining_and(self, rule, binding_right):
+        binding_list = ListOfBinding([binding_right])
+        new_rule = binding_right.bind(rule.right)
         for goal in new_rule.list_of_statements:
             or_binding = self.backward_chaining_or(goal)
             var_list = goal.get_variable_list()

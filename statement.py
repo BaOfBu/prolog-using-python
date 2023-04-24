@@ -14,21 +14,25 @@ class Statement:
         
     def negate(self):
         return Statement(list_of_terms=self.list_of_terms, predicate=self.predicate, negative = not self.negative)
+    
     def add_new_term(self,term):
         self.list_of_terms.append(term)
+
     def simplify(self):
         from conDisjunction import Conjunction
-        if len(self.list_of_terms)==1 and isinstance(self.list_of_terms[0],Conjunction):
+        if len(self.list_of_terms) == 1 and isinstance(self.list_of_terms[0],Conjunction):
             self.list_of_terms = self.list_of_terms[0].list_of_statements
+
     def __str__(self):
         output = self.predicate + '('
         for term in self.list_of_terms:
             output += str(term) + ', '
         output = output[:-2]+')'
         return output
+
     def __eq__(self, cmp):
         equal = True
-        if len(self.list_of_terms)!=len(cmp.list_of_terms):
+        if len(self.list_of_terms) != len(cmp.list_of_terms):
             return False
         else:
             for i in range(len(self.list_of_terms)):
@@ -36,9 +40,10 @@ class Statement:
                     equal = False
                     break
         return self.predicate == cmp.predicate and self.negative == cmp.negative and equal
+    
     def is_identical(self,cmp):
         equal = True
-        if len(self.list_of_terms)!=len(cmp.list_of_terms):
+        if len(self.list_of_terms) != len(cmp.list_of_terms):
             return False
         else:
             for i in range(len(self.list_of_terms)):
@@ -47,13 +52,16 @@ class Statement:
                     equal = False
                     break
         return self.predicate == cmp.predicate and self.negative == cmp.negative and equal
-    def is_unificable(self,obj):
+    
+    def is_unifiable(self,obj):
         return self.predicate == obj.predicate and self.negative == obj.negative and \
         len(self.list_of_terms) == len(obj.list_of_terms)
+    
     def is_opposite(self,obj):
         return self.predicate == obj.predicate and self.negative != obj.negative and \
         len(self.list_of_terms) == len(obj.list_of_terms)
-    def standardlize_variable(self,bind_dict = {}):
+    
+    def standardize_variable(self,bind_dict = {}):
         #global name_identity
         from term import Term
         for index, term in enumerate(self.list_of_terms):
@@ -63,13 +71,15 @@ class Statement:
                     bind_dict[term.term] = '_' + str(globals.name_identity)
                 self.list_of_terms[index] = Term(term = bind_dict[term.term])
         return bind_dict
-    def standardlize_abstract_variable(self):
+    
+    def standardize_abstract_variable(self):
         global abstract_var
         global abstract_name
         for term in self.list_of_terms:
             if term.term == '_':
                 term.term = abstract_name + str(abstract_var)
                 abstract_var+=1
+
     def get_variable_list(self):
         res = []
         for term in self.list_of_terms:
