@@ -12,18 +12,16 @@ class KnowledgeBase:
         self.list_of_rules = []
         self.list_of_facts = []
         self.list_of_query = []
-    def input_from_file(self, filename):
-        with open(filename,'r') as f:
+    def input_from_file(self, filename_input,queries_input):
+        with open(filename_input,'r') as f:
+            index = 1
             for line in f:
+                #print(index)
+                index += 1
                 line = line.strip()
                 line = line.replace(" ","")
                 line = line.replace("),",")&")
-                if line.startswith('?-'):
-                    line = line[2:].strip()
-                    query = process_string(line)
-                    query.standardlize_abstract_variable()
-                    self.list_of_query.append(query)
-                elif not line.startswith('%') and line != '':
+                if not line.startswith('%') and line != '':
                     expr = line.split(':-')
                     #print(expr[0])
                     new_rule = None
@@ -34,6 +32,21 @@ class KnowledgeBase:
                         new_rule = process_string(expr[0]).list_of_statements[0]
                         new_rule.standardlize_variable()
                         self.list_of_facts.append(new_rule)
+
+        with open(queries_input,'r') as f1:
+            index = 1
+            for line in f1:
+                #print(index)
+                index += 1
+                line = line.strip()
+                line = line.replace(" ","")
+                line = line.replace("),",")&")
+                if line.startswith('?-'):
+                    line = line[2:].strip()
+                    query = process_string(line)
+                    query.standardlize_abstract_variable()
+                    self.list_of_query.append(query)
+                    
         # Split rule
         list_of_new_rule = []
         for rule in self.list_of_rules:
@@ -52,23 +65,6 @@ class KnowledgeBase:
         for fact in self.list_of_facts:
             output+= str(fact) + '\n'
         return output
-    def forward_chaining_ask(self, goal):
-        list_of_binding = None
-        if isinstance(goal,Statement):
-            return self.forward_chaining(goal)
-        elif isinstance(goal,Conjunction):
-            for subgoal in goal.list_of_statements:
-                if list_of_binding!=None:
-                    list_of_binding = list_of_binding.merge_and(self.forward_chaining_ask(subgoal))
-                else:
-                    list_of_binding = self.forward_chaining_ask(subgoal)
-        elif isinstance(goal,Disjunction):
-            for subgoal in goal.list_of_statements:
-                if list_of_binding!=None:
-                    list_of_binding = list_of_binding.merge_or(self.forward_chaining_ask(subgoal))
-                else:
-                    list_of_binding = self.forward_chaining_ask(subgoal)
-        return list_of_binding
     # Backward chaining
     def backward_chaining_ask(self,goal):
         list_of_binding = None

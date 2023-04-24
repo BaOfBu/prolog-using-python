@@ -129,20 +129,33 @@ def unify_var(var,x,binding):
         binding.add_new_binding(var,x)
         return binding
 
-def print_output(f, query, binding_list):
-    print('?- ' + str(query))
-    f.write('?- ' + str(query) + '\n')
-    is_fail = True
+def print_output(f, query, binding_list,index):
+    #print('?- ' + str(query))
+    f.write(str(index) + '?- ' + str(query) + '\n')
+    is_fail = 'true'
     res = ''
     for binding in binding_list.binding_list:
         if binding.is_fail == False:
-            is_fail = False
+            is_fail = 'false'
             str_bind = ''
             for term in query.get_list_var():
                 if not term.startswith(abstract_name):
                     if term in binding.binding_dict:
-                        str_bind += term + ' = ' + binding.binding_dict[term] + '\n'
-            if not str_bind in res:
-                res += str_bind[:-1] + ';\n'
-    print(res)
-    f.write(res)
+                        temp = '' + binding.binding_dict[term]
+                        if not temp in str_bind:
+                            str_bind += term + ' = ' + binding.binding_dict[term]
+            if res.count(str_bind) == 0:
+                res += str_bind + ' ;\n'
+    
+    if (is_fail == 'true'):
+        is_fail = 'false'
+    else: is_fail = 'true'
+
+    if res == '':
+        #print(is_fail + ' .\n')
+        f.write(is_fail + ' .\n\n')
+    else:
+        res = res[:-3]
+        res += '.\n\n'
+        #print(res)
+        f.write(res)

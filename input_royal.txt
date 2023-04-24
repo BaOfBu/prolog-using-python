@@ -1,4 +1,4 @@
-%Male members of the British Royal family tree 
+% Male members of the British Royal family tree
 male('Prince Phillip').
 male('Prince Charles').
 male('Captain Mark Phillips').
@@ -74,7 +74,7 @@ parent('Autumn Kelly','Isla Phillips').
 parent('Mike Tindall','Mia Grace Tindall').
 parent('Zara Phillips','Mia Grace Tindall').
 
-% marriages and divorces of the British Royal family tree 
+% Marriages and divorces of the British Royal family tree 
 married('Prince Phillip','Queen Elizabeth II').
 married('Queen Elizabeth II','Prince Phillip').
 married('Prince Charles','Camilla Parker Bowles').
@@ -100,7 +100,7 @@ divorced('Sarah Ferguson','Prince Andrew').
 
 
 % Predicates for husband
-husband(Person, Wife) :- male(Person) & female(Wife) & married(Person,Wife).
+husband(Person, Wife) :- male(Person), female(Wife), married(Person,Wife).
 
 % Predicates for wife
 wife(Person, Husband) :- female(Person), male(Husband), married(Person,Husband).
@@ -139,8 +139,8 @@ grandson(GS, GP) :- male(GS), grandchild(GS, GP).
 granddaughter(GD, GP) :- female(GD), grandchild(GD, GP).
 
 % Predicates for sibling 
-%A\=B <-> not(A=B) 
-%sibling(Person1, Person2) :-parent(P, Person1),parent(P, Person2),Person1 \= Person2. 
+% A\=B <-> not(A=B) 
+sibling(Person1, Person2) :-parent(P, Person1),parent(P, Person2),\=(Person1,Person2). 
 
 % Predicates for brother
 brother(Person, Sibling) :-male(Person),sibling(Person, Sibling).
@@ -159,5 +159,3 @@ niece(Person, AuntUncle):-female(Person), (aunt(AuntUncle, Person); uncle(AuntUn
 
 % Predicates for nephew
 nephew(Person, AuntUncle):-male(Person), (aunt(AuntUncle, Person); uncle(AuntUncle, Person)).
-
-?- child('Princess Charlotte', Parent).
