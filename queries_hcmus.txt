@@ -1,4 +1,3 @@
-%TEST DATASET HCMUS
 ?- same_vice_chancellor('Nguyen Thi Thanh Mai', 'Tran Minh Triet', 'HCMUS').
 true.
 
@@ -87,7 +86,6 @@ true.
 ?- same_academic_rank_faculty('Dao Nguyen Khoi', Lecture2).
 Lecture2 = 'Vu Van Nghi' ;
 Lecture2 = 'To Thi Hien' ;
-false.
 
 ?- same_academic_rank_faculty('Nguyen Thi Kim Dung', 'Doan Nguyen Vu').
 false

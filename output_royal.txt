@@ -1,163 +1,163 @@
-?- (husband('PrincePhillip', 'QueenElizabethII'))
+1?- (husband('PrincePhillip', 'QueenElizabethII'))
 true .
 
-?- (wife('QueenElizabethII', 'CaptainMarkPhillips'))
+2?- (wife('QueenElizabethII', 'CaptainMarkPhillips'))
 false .
 
-?- (father('PrinceCharles', 'AutumnKelly'))
+3?- (father('PrinceCharles', 'AutumnKelly'))
 false .
 
-?- (mother('PrincessAnne', 'ZaraPhillips'))
+4?- (mother('PrincessAnne', 'ZaraPhillips'))
 true .
 
-?- (child('MikeTindall', 'TimothyLaurence'))
+5?- (child('MikeTindall', 'TimothyLaurence'))
 false .
 
-?- (son('PrincessBeatrice', 'PrinceAndrew'))
+6?- (son('PrincessBeatrice', 'PrinceAndrew'))
 false .
 
-?- (daughter('PrincessEugenie', 'SarahFerguson'))
+7?- (daughter('PrincessEugenie', 'SarahFerguson'))
 true .
 
-?- (grandparent('QueenElizabethII', 'JamesViscountSevern'))
+8?- (grandparent('QueenElizabethII', 'JamesViscountSevern'))
 true .
 
-?- (grandmother('PrincePhillip', 'LadyLouiseMountbatten-Windsor'))
+9?- (grandmother('PrincePhillip', 'LadyLouiseMountbatten-Windsor'))
 false .
 
-?- (grandfather('PrincePhillip', 'PrincessBeatrice'))
+10?- (grandfather('PrincePhillip', 'PrincessBeatrice'))
 true .
 
-?- (grandchild('PrinceGeorge', 'PrincessAnne'))
+11?- (grandchild('PrinceGeorge', 'PrincessAnne'))
 false .
 
-?- (grandson('PrincessCharlotte', 'PrinceCharles'))
+12?- (grandson('PrincessCharlotte', 'PrinceCharles'))
 false .
 
-?- (granddaughter('SavannahPhillips', 'CaptainMarkPhillips'))
+13?- (granddaughter('SavannahPhillips', 'CaptainMarkPhillips'))
 true .
 
-?- (sibling('SavannahPhillips', 'IslaPhillips'))
+14?- (sibling('SavannahPhillips', 'IslaPhillips'))
 true .
 
-?- (brother('JamesViscountSevern', 'LadyLouiseMountbatten-Windsor'))
+15?- (brother('JamesViscountSevern', 'LadyLouiseMountbatten-Windsor'))
 true .
 
-?- (sister('PrinceGeorge', 'PrincessCharlotte'))
+16?- (sister('PrinceGeorge', 'PrincessCharlotte'))
 false .
 
-?- (aunt('PrincessDiana', 'PeterPhillips'))
+17?- (aunt('PrincessDiana', 'PeterPhillips'))
 false .
 
-?- (uncle('PrinceCharles', 'ZaraPhillips'))
+18?- (uncle('PrinceCharles', 'ZaraPhillips'))
 true .
 
-?- (niece('PrincessCharlotte', 'PrinceHarry'))
+19?- (niece('PrincessCharlotte', 'PrinceHarry'))
 true .
 
-?- (nephew('JamesViscountSevern', 'PrincessBeatrice'))
+20?- (nephew('JamesViscountSevern', 'PrincessBeatrice'))
 false .
 
-?- (divorced('PrinceCharles', 'CamillaParkerBowles'))
+21?- (divorced('PrinceCharles', 'CamillaParkerBowles'))
 false .
 
-?- (divorced('SarahFerguson', 'PrinceAndrew'))
+22?- (divorced('SarahFerguson', 'PrinceAndrew'))
 true .
 
-?- (parent('SophieRhys-jones', 'PrincessEugenie'))
+23?- (parent('SophieRhys-jones', 'PrincessEugenie'))
 false .
 
-?- (parent('ZaraPhillips', 'SavannahPhillips'))
+24?- (parent('ZaraPhillips', 'SavannahPhillips'))
 false .
 
-?- (parent('MikeTindall', 'MiaGraceTindall'))
+25?- (parent('MikeTindall', 'MiaGraceTindall'))
 true .
 
-?- (male('IslaPhillips'))
+26?- (male('IslaPhillips'))
 false .
 
-?- (male('PeterPhillips'))
+27?- (male('PeterPhillips'))
 true .
 
-?- (female('PrinceAndrew'))
+28?- (female('PrinceAndrew'))
 false .
 
-?- (female('PrincessAnne'))
+29?- (female('PrincessAnne'))
 true .
 
-?- (married('PrinceWilliam', 'KateMiddleton'))
+30?- (married('PrinceWilliam', 'KateMiddleton'))
 true .
 
-?- (married('AutumnKelly', 'MikeTindall'))
+31?- (married('AutumnKelly', 'MikeTindall'))
 false .
 
-?- (husband('PrinceEdward', Wife))
+32?- (husband('PrinceEdward', Wife))
 Wife = 'SophieRhys-jones'.
 
-?- (wife('AutumnKelly', Husband))
+33?- (wife('AutumnKelly', Husband))
 Husband = 'PeterPhillips'.
 
-?- (father('PrinceWilliam', Child))
+34?- (father('PrinceWilliam', Child))
 Child = 'PrinceGeorge' ;
 Child = 'PrincessCharlotte'.
 
-?- (mother('PeterPhillips', Child))
+35?- (mother('PeterPhillips', Child))
 false .
 
-?- (mother('ZaraPhillips', Child))
+36?- (mother('ZaraPhillips', Child))
 Child = 'MiaGraceTindall'.
 
-?- (child('PrincessCharlotte', Parent))
+37?- (child('PrincessCharlotte', Parent))
 Parent = 'PrinceWilliam' ;
 Parent = 'KateMiddleton'.
 
-?- (son('JamesViscountSevern', Parent))
+38?- (son('JamesViscountSevern', Parent))
 Parent = 'PrinceEdward' ;
 Parent = 'SophieRhys-jones'.
 
-?- (daughter('PrincessEugenie', Parent))
+39?- (daughter('PrincessEugenie', Parent))
 Parent = 'PrinceAndrew' ;
 Parent = 'SarahFerguson'.
 
-?- (grandparent('CaptainMarkPhillips', GC))
+40?- (grandparent('CaptainMarkPhillips', GC))
 GC = 'SavannahPhillips' ;
 GC = 'IslaPhillips' ;
 GC = 'MiaGraceTindall'.
 
-?- (grandmother('PrincessAnne', GC))
+41?- (grandmother('PrincessAnne', GC))
 GC = 'SavannahPhillips' ;
 GC = 'IslaPhillips' ;
 GC = 'MiaGraceTindall'.
 
-?- (grandfather('PrinceCharles', GC))
+42?- (grandfather('PrinceCharles', GC))
 GC = 'PrinceGeorge' ;
 GC = 'PrincessCharlotte'.
 
-?- (grandchild('PrincessCharlotte', GP))
+43?- (grandchild('PrincessCharlotte', GP))
 GP = 'PrinceCharles' ;
 GP = 'PrincessDiana'.
 
-?- (grandson('PrinceGeorge', GP))
+44?- (grandson('PrinceGeorge', GP))
 GP = 'PrinceCharles' ;
 GP = 'PrincessDiana'.
 
-?- (granddaughter('IslaPhillips', GP))
+45?- (granddaughter('IslaPhillips', GP))
 GP = 'PrincessAnne' ;
 GP = 'CaptainMarkPhillips'.
 
-?- (sibling('IslaPhillips', Sibling))
+46?- (sibling('IslaPhillips', Sibling))
 Sibling = 'SavannahPhillips'.
 
-?- (sibling('SavannahPhillips', Sibling))
+47?- (sibling('SavannahPhillips', Sibling))
 Sibling = 'IslaPhillips'.
 
-?- (brother('PrinceWilliam', Sibling))
+48?- (brother('PrinceWilliam', Sibling))
 Sibling = 'PrinceHarry'.
 
-?- (sister('ZaraPhillips', Sibling))
+49?- (sister('ZaraPhillips', Sibling))
 Sibling = 'PeterPhillips'.
 
-?- (aunt('CamillaParkerBowles', NieceNephew))
+50?- (aunt('CamillaParkerBowles', NieceNephew))
 NieceNephew = 'PrinceWilliam' ;
 NieceNephew = 'PrinceHarry' ;
 NieceNephew = 'PeterPhillips' ;
@@ -167,7 +167,7 @@ NieceNephew = 'PrincessEugenie' ;
 NieceNephew = 'LadyLouiseMountbatten-Windsor' ;
 NieceNephew = 'JamesViscountSevern'.
 
-?- (uncle('PrinceAndrew', NieceNephew))
+51?- (uncle('PrinceAndrew', NieceNephew))
 NieceNephew = 'PrinceWilliam' ;
 NieceNephew = 'PrinceHarry' ;
 NieceNephew = 'PeterPhillips' ;
@@ -175,11 +175,11 @@ NieceNephew = 'ZaraPhillips' ;
 NieceNephew = 'LadyLouiseMountbatten-Windsor' ;
 NieceNephew = 'JamesViscountSevern'.
 
-?- (niece('MiaGraceTindall', AuntUncle))
+52?- (niece('MiaGraceTindall', AuntUncle))
 AuntUncle = 'AutumnKelly' ;
 AuntUncle = 'PeterPhillips'.
 
-?- (nephew('PrinceGeorge', AuntUncle))
+53?- (nephew('PrinceGeorge', AuntUncle))
 AuntUncle = 'KateMiddleton' ;
 AuntUncle = 'PrinceWilliam' ;
 AuntUncle = 'PrinceHarry'.
