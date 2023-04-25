@@ -1,15 +1,18 @@
 import globals
+import os
 from knowledge_base import KnowledgeBase
 from Utils import print_output
 
 globals.initialize()
 
-print("1:royal family; 2: HCMUS")
+path=os.path.dirname(__file__)
+
+print("1:Royal family; 2: HCMUS")
 choice = int(input())
 
-input_file = 'input/'
-output_file = 'output/'
-queries_file = 'input/'
+input_file = path + '/input/'
+output_file = path + '/output/'
+queries_file = path + '/input/'
 
 if(choice == 1):
     input_file += 'input_royal.txt'
