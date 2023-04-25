@@ -1,0 +1,181 @@
+?- husband('Prince Phillip', 'Queen Elizabeth II').
+true .
+
+?- wife('Queen Elizabeth II', 'Captain Mark Phillips').
+false .
+
+?- father('Prince Charles', 'Autumn Kelly').
+false .
+
+?- mother('Princess Anne', 'Zara Phillips').
+true .
+
+?- child('Mike Tindall', 'Timothy Laurence').
+false .
+
+?- son('Princess Beatrice', 'Prince Andrew').
+false .
+
+?- daughter('Princess Eugenie', 'Sarah Ferguson').
+true .
+
+?- grandparent('Queen Elizabeth II', 'James Viscount Severn').
+true .
+
+?- grandmother('Prince Phillip', 'Lady Louise Mountbatten-Windsor').
+false .
+
+?- grandfather('Prince Phillip', 'Princess Beatrice').
+true .
+
+?- grandchild('Prince George', 'Princess Anne').
+false .
+
+?- grandson('Princess Charlotte', 'Prince Charles').
+false .
+
+?- granddaughter('Savannah Phillips', 'Captain Mark Phillips').
+true .
+
+?- sibling('Savannah Phillips', 'Isla Phillips').
+true .
+
+?- brother('James Viscount Severn', 'Lady Louise Mountbatten-Windsor').
+true .
+
+?- sister('Prince George', 'Princess Charlotte').
+false .
+
+?- aunt('Princess Diana', 'Peter Phillips').
+false.
+
+?- uncle('Prince Charles', 'Zara Phillips').
+true .
+
+?- niece('Princess Charlotte', 'Prince Harry').
+true .
+
+?- nephew('James Viscount Severn', 'Princess Beatrice').
+false .
+
+?- divorced('Prince Charles', 'Camilla Parker Bowles').
+false.
+
+?- divorced('Sarah Ferguson', 'Prince Andrew').
+true .
+
+?- parent('Sophie Rhys-jones', 'Princess Eugenie').
+false .
+
+?- parent('Zara Phillips', 'Savannah Phillips').
+false .
+
+?- parent('Mike Tindall', 'Mia Grace Tindall').
+true .
+
+?- male('Isla Phillips').
+false .
+
+?- male('Peter Phillips').
+true .
+
+?- female('Prince Andrew').
+false .
+
+?- female('Princess Anne').
+true .
+
+?- married('Prince William', 'Kate Middleton').
+true .
+
+?- married('Autumn Kelly', 'Mike Tindall').
+false .
+
+?- husband('Prince Edward', Wife).
+Wife = 'Sophie Rhys-jones'.
+
+?- wife('Autumn Kelly', Husband).
+Husband = 'Peter Phillips'.
+
+?- father('Prince William', Child).
+Child = 'Prince George' ;
+Child = 'Princess Charlotte'.
+
+?- mother('Peter Phillips', Child).
+false.
+
+?- mother('Zara Phillips', Child).
+Child = 'Mia Grace Tindall'.
+
+?- child('Princess Charlotte', Parent).
+Parent = 'Prince William' ;
+Parent = 'Kate Middleton'.
+
+?- son('James Viscount Severn', Parent).
+Parent = 'Prince Edward' ;
+Parent = 'Sophie Rhys-jones'.
+
+?- daughter('Princess Eugenie', Parent).
+Parent = 'Prince Andrew' ;
+Parent = 'Sarah Ferguson'.
+
+?- grandparent('Captain Mark Phillips', GC).
+GC = 'Savannah Phillips' ;
+GC = 'Isla Phillips' ;
+GC = 'Mia Grace Tindall'.
+
+?- grandmother('Princess Anne', GC).
+GC = 'Savannah Phillips' ;
+GC = 'Isla Phillips' ;
+GC = 'Mia Grace Tindall'.
+
+?- grandfather('Prince Charles', GC).
+GC = 'Prince George' ;
+GC = 'Princess Charlotte' .
+
+?- grandchild('Princess Charlotte', GP).
+GP = 'Prince Charles' ;
+GP = 'Princess Diana' .
+
+?- grandson('Prince George', GP).
+GP = 'Prince Charles' ;
+GP = 'Princess Diana' .
+
+?- granddaughter('Isla Phillips', GP).
+GP = 'Princess Anne' ;
+GP = 'Captain Mark Phillips'.
+
+?- sibling('Isla Phillips', Sibling).
+Sibling = 'Savannah Phillips'.
+
+?- sibling('Savannah Phillips', Sibling).
+Sibling = 'Isla Phillips'.
+
+?- brother('Prince William', Sibling).
+Sibling = 'Prince Harry'.
+
+?- sister('Zara Phillips', Sibling).
+Sibling = 'Peter Phillips'.
+
+?- aunt('Camilla Parker Bowles', NieceNephew).
+NieceNephew = 'Peter Phillips' ;
+NieceNephew = 'Zara Phillips' ;
+NieceNephew = 'Princess Beatrice' ;
+NieceNephew = 'Princess Eugenie' ;
+NieceNephew = 'Lady Louise Mountbatten-Windsor' ;
+NieceNephew = 'James Viscount Severn'.
+
+?- uncle('Prince Andrew', NieceNephew).
+NieceNephew = 'Prince William';
+NieceNephew = 'Prince Harry' ;
+NieceNephew = 'Peter Phillips' ;
+NieceNephew = 'Zara Phillips' ;
+NieceNephew = 'Lady Louise Mountbatten-Windsor' ;
+NieceNephew = 'James Viscount Severn'.
+
+?- niece('Mia Grace Tindall', AuntUncle).
+AuntUncle = 'Autumn Kelly' ;
+AuntUncle = 'Peter Phillips'.
+
+?- nephew('Prince George', AuntUncle).
+AuntUncle = 'Prince Harry'.

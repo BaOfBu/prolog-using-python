@@ -2,7 +2,7 @@ from statement import Statement
 from term import Term
 
 class Rule:
-    #Define a rule with left and right hand side are Conjunction of statements
+    #Define a rule(left) and conjunction of statements(right)
     def __init__(self, left, right = None):
         self.left = left
         self.right = right

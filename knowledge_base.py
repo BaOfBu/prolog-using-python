@@ -5,7 +5,7 @@ from binding import Binding, ListOfBinding
 from Utils import process_string, unify
 
 class KnowledgeBase:
-    #Knowledge Base with set of rules (facts are rules without right hand side)
+    #Knowledge Base with set of rules (facts are rules without conditions)
     def __init__(self):
         self.list_of_rules = []
         self.list_of_facts = []

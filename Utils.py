@@ -15,32 +15,6 @@ def is_operator(c):
 def is_higher_precedence(a,b):
     return (a == '&' or a == ',') and b == ';'
 
-#Change to Reverse Polish Notation
-def change_to_RPN(tokens):
-    operator_stack = []
-    output = []
-    for token in tokens:
-        if token == '(':
-            operator_stack.append(token)
-        elif token == ')':
-            operator = operator_stack.pop()
-            while operator != '(':
-                output.append(operator)
-                operator = operator_stack.pop()
-        elif is_operator(token):
-            while len(operator_stack)>0 and (operator_stack[-1].endswith('*') or \
-            is_higher_precedence(operator_stack[-1],token) or operator_stack[-1]==token) and (operator_stack[-1]!='('):
-                output.append(operator_stack.pop())
-            operator_stack.append(token)
-        else:
-            if token.endswith('*'):
-                operator_stack.append(token)
-            else:
-                output.append(token)
-    operator_stack.reverse()
-    output = output + operator_stack
-    return output
-
 #Process RPN and convert to conjunction
 def convert_to_conjunction(tokens):
 
@@ -74,25 +48,37 @@ def convert_to_conjunction(tokens):
     return output
 
 def process_string(s):
-    #Turn string to list of tokens
-    tokens = []
-    name = ''
-    for ch in s:
-        if is_operator(ch) or ch == '(' or ch == ')':
-            if name!='':
-                if ch == '(':
-                    name += '*'
-                tokens.append(name)
-                name = ''
-            tokens.append(ch)
-        elif ch==' ':
-            continue
-        else:
-            name+=ch
-    rpn = change_to_RPN(tokens)
-    output_line = convert_to_conjunction(rpn)
-    return output_line
+    #convert string to Reverse Polish notation 
+    output = []
+    index = 0
+    name =''
+    string = s
+    operator = []
+    while len(string) > 0:
+        if string.startswith(')') or string.startswith('.'):
+            break
+        flag = True
+        if is_operator(string[0]):
+            operator.append(string[0])
+            if string[1] != '(':
+                string = string[1:]
+            else:
+                string = string[2:]
+                flag = False
+        index1 = string.find("(")
+        name = string[:index1]
+        name += '*'
+        index2 = string.find(")")
+        terms = string[(index1 + 1):index2]
+        index = index2 + 1
+        string = string[index:]
+        output.extend([terms, name])
+        if len(string) == 0 or flag:
+            for i in range(len(operator)):
+                output.append(operator.pop())
 
+    result = convert_to_conjunction(output)
+    return result
 
 def unify(x,y, binding):
 
